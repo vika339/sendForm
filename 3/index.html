@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Send Email</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+<body>
+	<form id="send-form">
+		<p><label for="fio">ФИО: </label><input type="text" name="fio"></p>
+		<p><label for="email">Email: </label><input type="text" name="email"></p>
+		<p><label for="phone">Phone: </label><input type="text" name="phone"></p>
+		<button id="send-btn">Push</button>
+	</form>
+	<!-- Сюда выведу результат отправки письма -->
+	<output></output>
+
+
+<script>
+$(document).ready(function(){
+	$('#send-btn').on('click',sendEmail);
+});
+
+function sendEmail(){
+	event.preventDefault();
+	$.post(
+		"mail.php",
+		$('#send-form').serialize(),
+		ifEmailSend
+	);
+}
+
+function ifEmailSend(data){
+	console.log(data);
+}
+
+</script>
+
+</body>
+</html>
